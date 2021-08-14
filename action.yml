@@ -1,0 +1,13 @@
+name: 'Setup sqlc'
+description: "Compile SQL to type-safe Go"
+author: 'Kyle Conroy'
+inputs:
+  sqlc-version:
+    description: 'The version of sqlc to install. Defaults to v1.9.0'
+    required: false
+branding:
+  icon: 'terminal'
+  color: 'purple'
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
