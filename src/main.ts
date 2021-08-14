@@ -12,7 +12,7 @@ async function run(): Promise<void> {
 
     switch (process.platform) {
       case 'win32': {
-        let toolUrl = `https://downloads.sqlc.dev/sqlc_${version}_windows_amd64.zip`
+        const toolUrl = `https://downloads.sqlc.dev/sqlc_${version}_windows_amd64.zip`
         const downloadPath = await tc.downloadTool(toolUrl)
         const extPath = await tc.extractZip(downloadPath)
         const cachedPath = await tc.cacheDir(extPath, 'sqlc', version)
@@ -21,7 +21,7 @@ async function run(): Promise<void> {
       }
 
       case 'darwin': {
-        let toolUrl = `https://downloads.sqlc.dev/sqlc_${version}_darwin_amd64.zip`
+        const toolUrl = `https://downloads.sqlc.dev/sqlc_${version}_darwin_amd64.zip`
         const downloadPath = await tc.downloadTool(toolUrl)
         const extPath = await tc.extractZip(downloadPath)
         const cachedPath = await tc.cacheDir(extPath, 'sqlc', version)
@@ -30,7 +30,7 @@ async function run(): Promise<void> {
       }
 
       case 'linux': {
-        let toolUrl = `https://downloads.sqlc.dev/sqlc_${version}_linux_amd64.zip`
+        const toolUrl = `https://downloads.sqlc.dev/sqlc_${version}_linux_amd64.zip`
         const downloadPath = await tc.downloadTool(toolUrl)
         const extPath = await tc.extractTar(downloadPath)
         const cachedPath = await tc.cacheDir(extPath, 'sqlc', version)
