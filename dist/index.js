@@ -1483,7 +1483,7 @@ function run() {
                 case 'linux': {
                     const toolUrl = `https://downloads.sqlc.dev/sqlc_${version}_linux_amd64.zip`;
                     const downloadPath = yield tc.downloadTool(toolUrl);
-                    const extPath = yield tc.extractTar(downloadPath);
+                    const extPath = yield tc.extractZip(downloadPath);
                     const cachedPath = yield tc.cacheDir(extPath, 'sqlc', version);
                     core.addPath(cachedPath);
                     break;

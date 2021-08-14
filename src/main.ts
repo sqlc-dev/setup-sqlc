@@ -32,7 +32,7 @@ async function run(): Promise<void> {
       case 'linux': {
         const toolUrl = `https://downloads.sqlc.dev/sqlc_${version}_linux_amd64.zip`
         const downloadPath = await tc.downloadTool(toolUrl)
-        const extPath = await tc.extractTar(downloadPath)
+        const extPath = await tc.extractZip(downloadPath)
         const cachedPath = await tc.cacheDir(extPath, 'sqlc', version)
         core.addPath(cachedPath)
         break
