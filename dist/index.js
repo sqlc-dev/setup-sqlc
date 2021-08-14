@@ -1457,50 +1457,34 @@ const tc = __importStar(__webpack_require__(533));
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const toolDir = tc.find('equinox', '1.14.0', 'x64');
+            const version = core.getInput('sqlc-version') || '1.9.0';
+            const toolDir = tc.find('sqlc', version, 'x64');
             if (toolDir !== '') {
                 core.addPath(toolDir);
                 return;
             }
-            const channel = core.getInput('channel');
-            if (!['stable', 'beta', ''].includes(channel)) {
-                core.setFailed(`Unknown release channel ${channel}`);
-                return;
-            }
             switch (process.platform) {
                 case 'win32': {
-                    let toolUrl = 'https://bin.equinox.io/a/3tDrUv1NjAT/release-tool-1.14.0-windows-amd64.zip';
-                    if (channel === 'beta') {
-                        toolUrl =
-                            'https://bin.equinox.io/a/ihPCmxfgCRn/release-tool-1.11.0-windows-amd64.zip';
-                    }
+                    const toolUrl = `https://downloads.sqlc.dev/sqlc_${version}_windows_amd64.zip`;
                     const downloadPath = yield tc.downloadTool(toolUrl);
                     const extPath = yield tc.extractZip(downloadPath);
-                    const cachedPath = yield tc.cacheDir(extPath, 'equinox', '1.14.0');
+                    const cachedPath = yield tc.cacheDir(extPath, 'sqlc', version);
                     core.addPath(cachedPath);
                     break;
                 }
                 case 'darwin': {
-                    let toolUrl = 'https://bin.equinox.io/a/dsR9Yc3Uxrc/release-tool-1.14.0-darwin-amd64.zip';
-                    if (channel === 'beta') {
-                        toolUrl =
-                            'https://bin.equinox.io/a/mQkEFPVp73u/release-tool-1.11.0-darwin-amd64.zip';
-                    }
+                    const toolUrl = `https://downloads.sqlc.dev/sqlc_${version}_darwin_amd64.zip`;
                     const downloadPath = yield tc.downloadTool(toolUrl);
                     const extPath = yield tc.extractZip(downloadPath);
-                    const cachedPath = yield tc.cacheDir(extPath, 'equinox', '1.14.0');
+                    const cachedPath = yield tc.cacheDir(extPath, 'sqlc', version);
                     core.addPath(cachedPath);
                     break;
                 }
                 case 'linux': {
-                    let toolUrl = 'https://bin.equinox.io/a/hFqBgoEANbs/release-tool-1.14.0-linux-amd64.tar.gz';
-                    if (channel === 'beta') {
-                        toolUrl =
-                            'https://bin.equinox.io/a/2F6Hftj7dsf/release-tool-1.11.0-linux-amd64.tar.gz';
-                    }
+                    const toolUrl = `https://downloads.sqlc.dev/sqlc_${version}_linux_amd64.zip`;
                     const downloadPath = yield tc.downloadTool(toolUrl);
                     const extPath = yield tc.extractTar(downloadPath);
-                    const cachedPath = yield tc.cacheDir(extPath, 'equinox', '1.14.0');
+                    const cachedPath = yield tc.cacheDir(extPath, 'sqlc', version);
                     core.addPath(cachedPath);
                     break;
                 }
