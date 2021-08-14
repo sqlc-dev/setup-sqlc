@@ -10,6 +10,8 @@ Install the latest release:
 ```yaml
 steps:
 - uses: kyleconroy/setup-sqlc@v1
+  with:
+    sqlc-version: '1.9.0'
 - run: sqlc version
 ```
 
