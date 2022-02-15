@@ -3,8 +3,8 @@ description: "Compile SQL to type-safe Go"
 author: 'Kyle Conroy'
 inputs:
   sqlc-version:
-    description: 'The version of sqlc to install. Defaults to v1.9.0'
-    required: false
+    description: 'The sqlc version to download (if necessary) and use.'
+    required: true
 branding:
   icon: 'terminal'
   color: 'purple'
