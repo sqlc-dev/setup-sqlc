@@ -1457,7 +1457,11 @@ const tc = __importStar(__webpack_require__(533));
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const version = core.getInput('sqlc-version') || '1.9.0';
+            const version = core.getInput('sqlc-version');
+            if (!version) {
+                core.setFailed(`sqlc-version not set`);
+                return;
+            }
             const toolDir = tc.find('sqlc', version, 'x64');
             if (toolDir !== '') {
                 core.addPath(toolDir);
