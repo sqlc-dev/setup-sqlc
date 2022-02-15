@@ -3,7 +3,11 @@ import * as tc from '@actions/tool-cache'
 
 async function run(): Promise<void> {
   try {
-    const version = core.getInput('sqlc-version') || '1.9.0'
+    const version = core.getInput('sqlc-version')
+    if (!version) {
+      core.setFailed(`sqlc-version not set`)
+      return
+    }
     const toolDir = tc.find('sqlc', version, 'x64')
     if (toolDir !== '') {
       core.addPath(toolDir)
