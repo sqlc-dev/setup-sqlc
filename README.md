@@ -11,7 +11,7 @@ Install the latest release:
 steps:
 - uses: kyleconroy/setup-sqlc@v1
   with:
-    sqlc-version: '1.9.0'
+    sqlc-version: '1.12.0'
 - run: sqlc version
 ```
 
