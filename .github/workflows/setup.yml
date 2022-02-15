@@ -9,7 +9,7 @@ jobs:
     steps:
     - uses: kyleconroy/setup-sqlc@main
       with:
-        sqlc-version: '1.9.0'
+        sqlc-version: '1.12.0'
     - run: sqlc version
 
   setup-windows:
@@ -17,7 +17,7 @@ jobs:
     steps:
     - uses: kyleconroy/setup-sqlc@main
       with:
-        sqlc-version: '1.9.0'
+        sqlc-version: '1.12.0'
     - run: sqlc version
 
   setup-mac:
@@ -25,5 +25,5 @@ jobs:
     steps:
     - uses: kyleconroy/setup-sqlc@main
       with:
-        sqlc-version: '1.9.0'
+        sqlc-version: '1.12.0'
     - run: sqlc version
