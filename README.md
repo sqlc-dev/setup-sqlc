@@ -9,7 +9,7 @@ See [action.yml](action.yml)
 Install the latest release:
 ```yaml
 steps:
-- uses: kyleconroy/setup-sqlc@v1
+- uses: kyleconroy/setup-sqlc@v2
   with:
     sqlc-version: '1.12.0'
 - run: sqlc version
