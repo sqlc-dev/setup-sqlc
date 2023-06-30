@@ -7,23 +7,23 @@ jobs:
   setup-linux:
     runs-on: ubuntu-latest
     steps:
-    - uses: kyleconroy/setup-sqlc@main
+    - uses: sqlc-dev/setup-sqlc@main
       with:
-        sqlc-version: '1.12.0'
+        sqlc-version: '1.18.0'
     - run: sqlc version
 
   setup-windows:
     runs-on: windows-latest
     steps:
-    - uses: kyleconroy/setup-sqlc@main
+    - uses: sqlc-dev/setup-sqlc@main
       with:
-        sqlc-version: '1.12.0'
+        sqlc-version: '1.18.0'
     - run: sqlc version
 
   setup-mac:
     runs-on: macos-latest
     steps:
-    - uses: kyleconroy/setup-sqlc@main
+    - uses: sqlc-dev/setup-sqlc@main
       with:
-        sqlc-version: '1.12.0'
+        sqlc-version: '1.18.0'
     - run: sqlc version
