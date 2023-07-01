@@ -2,7 +2,7 @@
 
 This [action](https://docs.github.com/actions) downloads and installs [sqlc](https://sqlc.dev).
 
-# Usage
+## Usage
 
 ```yaml
 steps:
