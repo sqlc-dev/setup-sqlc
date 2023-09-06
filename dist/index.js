@@ -41,6 +41,43 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core = __importStar(__nccwpck_require__(186));
 const tc = __importStar(__nccwpck_require__(784));
+function downloadUrl(version) {
+    let plat = '';
+    let arch = '';
+    switch (process.platform) {
+        case 'win32': {
+            plat = 'windows';
+            break;
+        }
+        case 'darwin': {
+            plat = 'darwin';
+            break;
+        }
+        case 'linux': {
+            plat = 'linux';
+            break;
+        }
+        default: {
+            core.setFailed(`Unsupported platform: ${process.platform}`);
+            return '';
+        }
+    }
+    switch (process.arch) {
+        case 'x64': {
+            arch = 'amd64';
+            break;
+        }
+        case 'arm64': {
+            arch = 'arm64';
+            break;
+        }
+        default: {
+            core.setFailed(`Unsupported architecture: ${process.arch}`);
+            return '';
+        }
+    }
+    return `https://downloads.sqlc.dev/sqlc_${version}_${plat}_${arch}.zip`;
+}
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -49,40 +86,19 @@ function run() {
                 core.setFailed(`sqlc-version not set`);
                 return;
             }
-            const toolDir = tc.find('sqlc', version, 'x64');
+            const toolDir = tc.find('sqlc', version, process.arch);
             if (toolDir !== '') {
                 core.addPath(toolDir);
                 return;
             }
-            switch (process.platform) {
-                case 'win32': {
-                    const toolUrl = `https://downloads.sqlc.dev/sqlc_${version}_windows_amd64.zip`;
-                    const downloadPath = yield tc.downloadTool(toolUrl);
-                    const extPath = yield tc.extractZip(downloadPath);
-                    const cachedPath = yield tc.cacheDir(extPath, 'sqlc', version);
-                    core.addPath(cachedPath);
-                    break;
-                }
-                case 'darwin': {
-                    const toolUrl = `https://downloads.sqlc.dev/sqlc_${version}_darwin_amd64.zip`;
-                    const downloadPath = yield tc.downloadTool(toolUrl);
-                    const extPath = yield tc.extractZip(downloadPath);
-                    const cachedPath = yield tc.cacheDir(extPath, 'sqlc', version);
-                    core.addPath(cachedPath);
-                    break;
-                }
-                case 'linux': {
-                    const toolUrl = `https://downloads.sqlc.dev/sqlc_${version}_linux_amd64.zip`;
-                    const downloadPath = yield tc.downloadTool(toolUrl);
-                    const extPath = yield tc.extractZip(downloadPath);
-                    const cachedPath = yield tc.cacheDir(extPath, 'sqlc', version);
-                    core.addPath(cachedPath);
-                    break;
-                }
-                default: {
-                    core.setFailed(`Unsupported platform: ${process.platform}`);
-                }
+            const toolUrl = downloadUrl(version);
+            if (toolUrl === '') {
+                return;
             }
+            const downloadPath = yield tc.downloadTool(toolUrl);
+            const extPath = yield tc.extractZip(downloadPath);
+            const cachedPath = yield tc.cacheDir(extPath, 'sqlc', version);
+            core.addPath(cachedPath);
         }
         catch (error) {
             if (error instanceof Error)
