@@ -9,7 +9,7 @@ steps:
 # Ensure sqlc is installed
 - uses: sqlc-dev/setup-sqlc@v3
   with:
-    sqlc-version: '1.18.0'
+    sqlc-version: '1.20.0'
 # Print out the current version
 - run: sqlc version
 ```
