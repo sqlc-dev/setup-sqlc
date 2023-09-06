@@ -63,7 +63,6 @@ async function run(): Promise<void> {
     const downloadPath = await tc.downloadTool(toolUrl)
     const extPath = await tc.extractZip(downloadPath)
     const cachedPath = await tc.cacheDir(extPath, 'sqlc', version)
-    core.info(cachedPath)
     core.addPath(cachedPath)
   } catch (error) {
     if (error instanceof Error) core.setFailed(error.message)
