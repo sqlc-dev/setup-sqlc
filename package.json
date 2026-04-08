@@ -3,13 +3,14 @@
   "version": "4.0.0",
   "private": true,
   "description": "Compile SQL to type-safe Go",
+  "type": "module",
   "main": "lib/main.js",
   "scripts": {
     "build": "tsc",
     "format": "prettier --write **/*.ts",
     "format-check": "prettier --check **/*.ts",
     "lint": "eslint src/**/*.ts",
-    "package": "ncc build --source-map --license licenses.txt",
+    "package": "esbuild lib/main.js --bundle --platform=node --target=node20 --outfile=dist/index.js --sourcemap",
     "test": "jest",
     "all": "npm run build && npm run format && npm run lint && npm run package && npm test"
   },
@@ -25,15 +26,15 @@
   "author": "Kyle Conroy",
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "^1.10.1",
-    "@actions/tool-cache": "^2.0.1"
+    "@actions/core": "^3.0.0",
+    "@actions/tool-cache": "^4.0.0"
   },
   "devDependencies": {
     "@types/jest": "^29.5.12",
     "@types/node": "^25.5.2",
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
-    "@vercel/ncc": "^0.38.1",
+    "esbuild": "^0.28.0",
     "eslint": "^8.57.0",
     "eslint-plugin-github": "^4.10.2",
     "eslint-plugin-jest": "^27.9.0",
