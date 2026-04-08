@@ -7,7 +7,7 @@ This [action](https://docs.github.com/actions) downloads and installs [sqlc](htt
 ```yaml
 steps:
 # Ensure sqlc is installed
-- uses: sqlc-dev/setup-sqlc@v4
+- uses: sqlc-dev/setup-sqlc@v5
   with:
     sqlc-version: '1.25.0'
 # Print out the current version
